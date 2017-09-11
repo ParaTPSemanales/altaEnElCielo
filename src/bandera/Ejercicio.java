@@ -16,8 +16,11 @@ public class Ejercicio {
 	Bandera [] escuelas = new Bandera [sc.nextInt()];
 	for (int i = 0; i < escuelas.length; i++) {
 		escuelas[i] = new Bandera(sc.nextDouble());
-		carretel.setLargo(carretel.getLargo()-escuelas[i].getPrimerRetazo());
+		escuelas[i].alargarBandera(escuelas[i].getPrimerRetazo(), carretel);
+		carretel.cortarRetazo(escuelas[i].getPrimerRetazo());
 	}
+	
+	
 	sc.close();
 	}
 	

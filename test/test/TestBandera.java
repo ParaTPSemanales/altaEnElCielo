@@ -44,7 +44,7 @@ public class TestBandera {
 	public void agregarRetazoABandera(){
 		double largoBandera = bandera.getLargo();
 		largoBandera+=bandera.getUltimoRetazo();
-		bandera.alargarBandera(bandera.getUltimoRetazo());
+		bandera.alargarBandera(bandera.getUltimoRetazo(),carretel);
 		Assert.assertEquals(largoBandera,bandera.getLargo(),0.1);
 	}
 }

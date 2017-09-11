@@ -7,7 +7,6 @@ public class Bandera {
 	private double ultimoRetazo;
 	private double primerRetazo;
 	private double sobrante;
-	private double retazo;
 	
 	public Bandera (double largo) {
 		this.primerRetazo=largo;
@@ -37,12 +36,16 @@ public class Bandera {
 		this.costuras = costuras;
 	}
 
-	public void alargarBandera(double aumento) {
-		largo += aumento;
-		ultimoRetazo = aumento;
-		costuras++;
-		retazo++;
+	public void alargarBandera(double aumento, Carretel carretel) {
+		if(carretel.puedeCortarDelCarretel(aumento)) {
+			largo += aumento;
+			ultimoRetazo = aumento;
+			costuras++;
+			
+		}
+
 	}
+	
 	public double getUltimoRetazo() {
 		return ultimoRetazo;
 	}
@@ -63,13 +66,6 @@ public class Bandera {
 		this.sobrante = sobrante;
 	}
 
-	public double getRetazo() {
-		return retazo;
-	}
 
-	public void setRetazo(double retazo) {
-		this.retazo = retazo;
-	}
-	
 
 }
