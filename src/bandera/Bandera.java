@@ -37,7 +37,7 @@ public class Bandera {
 		this.costuras = costuras;
 	}
 
-	public void alargarBandera(int aumento) {
+	public void alargarBandera(double aumento) {
 		largo += aumento;
 		ultimoRetazo = aumento;
 		costuras++;
