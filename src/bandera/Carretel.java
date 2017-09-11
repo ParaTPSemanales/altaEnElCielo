@@ -20,9 +20,12 @@ public class Carretel {
 		this.setLargo(largo);
 	}
 	
-	public void cortarRetazo (double largo) {
-		if(puedeCortarDelCarretel(largo))
+	public boolean cortarRetazo (double largo) {
+		if(puedeCortarDelCarretel(largo)) {
 			this.setLargo(this.getLargo()-largo);
+			return true;
+		}
+	return false;		
 	}
 	
 	public boolean puedeCortarDelCarretel(double largo) {

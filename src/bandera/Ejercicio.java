@@ -20,10 +20,18 @@ public class Ejercicio {
 		carretel.cortarRetazo(escuelas[i].getPrimerRetazo());
 	}
 	
-	
+	while(carretel.getLargo()>0 && carretel.puedeCortarDelCarretel(escuelas[0].sacarDigitoUltimoRetazo()+escuelas[0].getUltimoRetazo())) {
+	for (int i = 0; i < escuelas.length; i++) {
+		double largoACoser=escuelas[i].sacarDigitoUltimoRetazo()+escuelas[i].getUltimoRetazo();
+		if(carretel.cortarRetazo(largoACoser));
+				escuelas[i].alargarBandera(largoACoser,carretel);
+		}
+	}
 	sc.close();
 	}
 	
+	
+
 	
 
 }

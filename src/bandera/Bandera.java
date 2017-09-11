@@ -41,7 +41,6 @@ public class Bandera {
 			largo += aumento;
 			ultimoRetazo = aumento;
 			costuras++;
-			
 		}
 
 	}
@@ -66,6 +65,16 @@ public class Bandera {
 		this.sobrante = sobrante;
 	}
 
-
+	public int sacarDigitoUltimoRetazo (){
+		int numero=0;
+		double numParcial=this.getUltimoRetazo();
+		double digito=this.getUltimoRetazo()%10;
+		while(numParcial>=1) {
+			digito=numParcial%10;
+			numero=numero+(int)digito;
+			numParcial=numParcial/10;
+		}
+		return numero;
+		}
 
 }
