@@ -9,6 +9,7 @@ public class Ejercicio {
 	Scanner sc = new Scanner (miPath);
 	Carretel carretel = new Carretel();
 	carretel.setLargo(sc.nextInt());
+	Bandera [] escuelas = new Bandera [sc.nextInt()];
 	
 	
 	sc.close();
