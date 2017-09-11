@@ -14,6 +14,13 @@ public class Bandera {
 		this.ultimoRetazo=largo;
 	}
 	
+	public Bandera () {
+		this.primerRetazo=0;
+		this.ultimoRetazo=0;
+		this.costuras=0;
+		this.largo=0;
+	}
+	
 	public double getLargo() {
 		return largo;
 	}
