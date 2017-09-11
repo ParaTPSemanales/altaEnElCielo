@@ -1,18 +1,26 @@
 package bandera;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Ejercicio {
 
-	public static void main(String[] args) {
-	String miPath = "bandera.in";
-	Scanner sc = new Scanner (miPath);
-	Carretel carretel = new Carretel();
-	carretel.setLargo(sc.nextInt());
+	public static void main(String[] args) throws FileNotFoundException {
+	String miPathEntrada = "Bandera.in";
+	Scanner sc = new Scanner (new File(miPathEntrada));
+	Carretel carretel = new Carretel(sc.nextDouble());
 	Bandera [] escuelas = new Bandera [sc.nextInt()];
-	
-	
+	for (int i = 0; i < escuelas.length; i++) {
+		escuelas[i] = new Bandera(sc.nextDouble());
+		carretel.setLargo(carretel.getLargo()-escuelas[i].getPrimerRetazo());
+	}
 	sc.close();
 	}
+	
+	
 
 }
