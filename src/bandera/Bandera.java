@@ -6,7 +6,6 @@ public class Bandera {
 	private int costuras;
 	private double ultimoRetazo;
 	private double primerRetazo;
-	private double sobrante;
 	
 	public Bandera (double largo) {
 		this.primerRetazo=largo;
@@ -57,14 +56,6 @@ public class Bandera {
 		this.primerRetazo = primerRetazo;
 	}
 
-	public double getSobrante() {
-		return sobrante;
-	}
-
-	public void setSobrante(double sobrante) {
-		this.sobrante = sobrante;
-	}
-
 	public int sacarDigitoUltimoRetazo (){
 		int numero=0;
 		double numParcial=this.getUltimoRetazo();
@@ -76,5 +67,11 @@ public class Bandera {
 		}
 		return numero;
 		}
+
+	public boolean RetazosIguales(Bandera bandera2) {
+		if(this.getUltimoRetazo()==bandera2.getUltimoRetazo())
+				return true;
+		return false;
+	}
 
 }

@@ -9,11 +9,13 @@ import bandera.Carretel;
 public class TestBandera {
 
 	Bandera bandera;
+	Bandera bandera2;
 	Carretel carretel;
 	
 	@Before
 	public void setUp(){
 	bandera = new Bandera(200);	
+	bandera2 = new Bandera(200);	
 	carretel = new Carretel(600);
 	}
 
@@ -46,5 +48,10 @@ public class TestBandera {
 		largoBandera+=bandera.getUltimoRetazo();
 		bandera.alargarBandera(bandera.getUltimoRetazo(),carretel);
 		Assert.assertEquals(largoBandera,bandera.getLargo(),0.1);
+	}
+	
+	@Test
+	public void SonRetazosIguales() {
+	 Assert.assertTrue(bandera.RetazosIguales(bandera2));
 	}
 }
