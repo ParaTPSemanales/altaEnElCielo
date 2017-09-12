@@ -29,7 +29,7 @@ public class Carretel {
 	}
 	
 	public boolean puedeCortarDelCarretel(double largo) {
-		if(largo<this.getLargo())
+		if(largo<=this.getLargo())
 			return true;
 		return false;
 	}
