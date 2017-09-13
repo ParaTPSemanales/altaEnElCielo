@@ -64,9 +64,8 @@ public class Ejercicio {
 	sobrante=carretel.getLargo();
 	cantMaxDeCosturas=buscarCosturasMaximas (escuelas);
 	int [][] subMatriz = new int [2][cantMaxDeCosturas+1];
-	int maximaSubsecuencia=0;
 	subMatriz=crearSubMatrizDe2Escuelas(matRetazos,1,5,cantMaxDeCosturas+1);
-	maximaSubsecuencia=contadorDeSubsecuencia (subMatriz,2,cantMaxDeCosturas+1);
+	int maximaSubsecuencia=subsecuencia (matRetazos);
 	System.out.println("Sobrante del carretel:"+sobrante);
 	System.out.println("Cantidad de costuras Maximas:"+cantMaxDeCosturas);
 }
@@ -91,18 +90,32 @@ public class Ejercicio {
 		return subMatriz;
 	}
 	
-	public static int contadorDeSubsecuencia (int [][]mat,int fi,int co) {
-		int contador=0;
-		int [][]matAux = new int [co][co];
-		for (int RetEsc1=0;RetEsc1<co;RetEsc1++) {
-			for (int RetEsc2=0;RetEsc2<co;RetEsc2++) {
-				if (mat[0][RetEsc1]==mat[1][RetEsc2])
-					matAux[RetEsc1][RetEsc1]=1;
+	public static int subsecuencia(int[][] matEscuelas){
+		int maximo = 0;
+		int [][] matAuxiliar = new int[matEscuelas.length + 1][matEscuelas[0].length + 1];
+		
+		maximo = secuenciaMaxima(matEscuelas[0],matEscuelas[4], matAuxiliar);
+	  
+		return maximo;
+	}
+
+	public static int secuenciaMaxima(int[] vec1, int[] vec2, int[][] mat){
+		int i , j = 1;
+		for ( i = 1; i <= vec2.length; i++) {
+			for ( j = 1; j <= vec1.length; j++) {
+				
+				
+				if(vec2[i-1] ==vec1[j-1])
+					mat[i][j]= mat[i-1][j-1]+1;
 				else
-					matAux[RetEsc1][RetEsc1]=0;
+					if(mat[i-1][j] >= mat[i][j-1])
+						mat[i][j]= mat[i-1][j];
+					else 
+						mat[i][j]= mat[i][j-1];
 			}
 		}
-		return contador;
+		
+		return  mat[i-1][j-1];
 	}
 }
 
