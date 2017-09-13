@@ -33,9 +33,10 @@ public class Bandera {
 	}
 
 	public void alargarBandera(double aumento, Carretel carretel) {
-			largo += aumento;
-			ultimoRetazo = aumento;
-			costuras++;	
+			this.largo += aumento;
+			this.ultimoRetazo = aumento;
+			if(this.getLargo() != aumento) // VER COMO MEJORAR ESTA PARTE DE CODIGO
+			this.costuras++;	
 	} //O(1)
 	
 	public double getUltimoRetazo() {
@@ -66,6 +67,15 @@ public class Bandera {
 		if(this.getUltimoRetazo()==bandera2.getUltimoRetazo())
 				return true;
 		return false;
+	}
+	
+	public static int buscarCosturasMaximas (Bandera [] escuelas) {
+		int maximo=escuelas[0].getCosturas();
+		for (int i = 1; i < escuelas.length; i++) {
+			if(escuelas[i].getCosturas()>maximo)
+				maximo=escuelas[i].getCosturas();
+		}
+		return maximo;
 	}
 
 }
