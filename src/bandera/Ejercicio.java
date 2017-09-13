@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.math.*;
 
 public class Ejercicio {
 
@@ -14,6 +15,7 @@ public class Ejercicio {
 	Scanner sc = new Scanner (new File(miPathEntrada));
 	Carretel carretel = new Carretel(sc.nextDouble());
 	Bandera [] escuelas = new Bandera [sc.nextInt()]; 
+	int fi=0,co=0;
 	double sobrante;
 	int cantMaxDeCosturas ;
 	int [][] matRetazos = new int [escuelas.length][6];
@@ -30,6 +32,7 @@ public class Ejercicio {
 	double largoACoser;
 	while(carretel.getLargo()>0 && carretel.puedeCortarDelCarretel(escuelas[0].sacarDigitoUltimoRetazo()+escuelas[0].getUltimoRetazo())) {
 	for (int i = 0; i < escuelas.length; i++) {
+		fi++;
 		largoACoser=escuelas[i].sacarDigitoUltimoRetazo()+escuelas[i].getUltimoRetazo();
 		if(carretel.cortarRetazo(largoACoser)) {
 				escuelas[i].alargarBandera(largoACoser,carretel);
@@ -37,6 +40,7 @@ public class Ejercicio {
 		}
 	}
 	j++;
+	co++;
 }
 	
 	for (int i = 0; i < escuelas.length && carretel.getLargo()>0 ; i++) {
@@ -56,9 +60,13 @@ public class Ejercicio {
 			}
 		System.out.println(" ");
 	}
-
+	
 	sobrante=carretel.getLargo();
 	cantMaxDeCosturas=buscarCosturasMaximas (escuelas);
+	int [][] subMatriz = new int [2][cantMaxDeCosturas+1];
+	int maximaSubsecuencia=0;
+	subMatriz=crearSubMatrizDe2Escuelas(matRetazos,1,5,cantMaxDeCosturas+1);
+	maximaSubsecuencia=contadorDeSubsecuencia (subMatriz,2,cantMaxDeCosturas+1);
 	System.out.println("Sobrante del carretel:"+sobrante);
 	System.out.println("Cantidad de costuras Maximas:"+cantMaxDeCosturas);
 }
@@ -71,5 +79,30 @@ public class Ejercicio {
 		}
 		return maximo;
 	}
-
+	
+	public static int [][] crearSubMatrizDe2Escuelas (int [][]mat,int escuela1,int escuela2, int co) {
+		int [][]subMatriz = new int [2][co];
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < co; j++) {
+				subMatriz [i][j]=mat[escuela1-1][j]; 	
+			}
+			escuela1=escuela2;
+		}
+		return subMatriz;
+	}
+	
+	public static int contadorDeSubsecuencia (int [][]mat,int fi,int co) {
+		int contador=0;
+		int [][]matAux = new int [co][co];
+		for (int RetEsc1=0;RetEsc1<co;RetEsc1++) {
+			for (int RetEsc2=0;RetEsc2<co;RetEsc2++) {
+				if (mat[0][RetEsc1]==mat[1][RetEsc2])
+					matAux[RetEsc1][RetEsc1]=1;
+				else
+					matAux[RetEsc1][RetEsc1]=0;
+			}
+		}
+		return contador;
+	}
 }
+
