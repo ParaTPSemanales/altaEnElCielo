@@ -16,27 +16,30 @@ public class Ejercicio {
 	Bandera [] escuelas = new Bandera [sc.nextInt()]; 
 	double sobrante;
 	int cantMaxDeCosturas ;
-	int [][] matRetazos = new int [escuelas.length][5];
+	int [][] matRetazos = new int [escuelas.length][6];
 	for (int i = 0; i < escuelas.length; i++) {
 		escuelas[i] = new Bandera(sc.nextDouble());
 		escuelas[i].alargarBandera(escuelas[i].getPrimerRetazo(), carretel);
 		carretel.cortarRetazo(escuelas[i].getPrimerRetazo());
-	}
+		matRetazos[i][0]=(int)escuelas[i].getPrimerRetazo();
+			}
 	
-	int j=0;
+	int j=1;
+	double largoACoser;
 	while(carretel.getLargo()>0 && carretel.puedeCortarDelCarretel(escuelas[0].sacarDigitoUltimoRetazo()+escuelas[0].getUltimoRetazo())) {
 	for (int i = 0; i < escuelas.length; i++) {
-		double largoACoser=escuelas[i].sacarDigitoUltimoRetazo()+escuelas[i].getUltimoRetazo();
-		if(carretel.cortarRetazo(largoACoser))
+		largoACoser=escuelas[i].sacarDigitoUltimoRetazo()+escuelas[i].getUltimoRetazo();
+		if(carretel.cortarRetazo(largoACoser)) {
 				escuelas[i].alargarBandera(largoACoser,carretel);
-				matRetazos[i][j]=(int)escuelas[i].sacarDigitoUltimoRetazo();
+				matRetazos[i][j]=(int)largoACoser;
 		}
-	j++;
 	}
+	j++;
+}
 	sc.close();	
 
 	for (int i=0;i<escuelas.length;i++){
-			for (int a=0;a<4;a++) {
+			for (int a=0;a<6;a++) {
 					System.out.print(matRetazos[i][a]+"\t");
 			}
 		System.out.println(" ");
