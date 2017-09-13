@@ -63,11 +63,26 @@ public class Ejercicio {
 	
 	sobrante=carretel.getLargo();
 	cantMaxDeCosturas=buscarCosturasMaximas (escuelas);
-	int [][] subMatriz = new int [2][cantMaxDeCosturas+1];
-	subMatriz=crearSubMatrizDe2Escuelas(matRetazos,1,5,cantMaxDeCosturas+1);
-	int maximaSubsecuencia=subsecuencia (matRetazos);
+	int SubsecuenciaParcial=0;
+	int maximaSubsecuencia=0;
+	int colegioSub1=0;
+	int colegioSub2=0;
+	for (int i = 0; i < cantMaxDeCosturas; i++) {
+		for (int k = i+1; k < cantMaxDeCosturas; k++) {
+			SubsecuenciaParcial=subsecuencia (matRetazos,i,k);
+			if (SubsecuenciaParcial>maximaSubsecuencia) {
+				maximaSubsecuencia=SubsecuenciaParcial;
+				colegioSub1=i;
+				colegioSub2=k;
+			}
+		}
+	}
+	colegioSub1++;
+	colegioSub2++;
 	System.out.println("Sobrante del carretel:"+sobrante);
 	System.out.println("Cantidad de costuras Maximas:"+cantMaxDeCosturas);
+	System.out.println("Maxima Subsecuencia:"+maximaSubsecuencia);
+	System.out.println("Escuelas con subsecuencia:"+colegioSub1+"y"+colegioSub2);
 }
 	
 	public static int buscarCosturasMaximas (Bandera [] escuelas) {
@@ -90,11 +105,11 @@ public class Ejercicio {
 		return subMatriz;
 	}
 	
-	public static int subsecuencia(int[][] matEscuelas){
+	public static int subsecuencia(int[][] matEscuelas,int escuela1,int escuela2){
 		int maximo = 0;
 		int [][] matAuxiliar = new int[matEscuelas.length + 1][matEscuelas[0].length + 1];
 		
-		maximo = secuenciaMaxima(matEscuelas[0],matEscuelas[4], matAuxiliar);
+		maximo = secuenciaMaxima(matEscuelas[escuela1],matEscuelas[escuela2], matAuxiliar);
 	  
 		return maximo;
 	}
