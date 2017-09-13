@@ -19,9 +19,11 @@ public class Ejercicio {
 	int [][] matRetazos = new int [escuelas.length][6];
 	for (int i = 0; i < escuelas.length; i++) {
 		escuelas[i] = new Bandera(sc.nextDouble());
-		escuelas[i].alargarBandera(escuelas[i].getPrimerRetazo(), carretel);
-		carretel.cortarRetazo(escuelas[i].getPrimerRetazo());
-		matRetazos[i][0]=(int)escuelas[i].getPrimerRetazo();
+		if(carretel.cortarRetazo(escuelas[i].getPrimerRetazo())) {
+			escuelas[i].alargarBandera(escuelas[i].getPrimerRetazo(), carretel);
+			matRetazos[i][0]=(int)escuelas[i].getPrimerRetazo();
+		}
+
 			}
 	
 	int j=1;
@@ -36,6 +38,16 @@ public class Ejercicio {
 	}
 	j++;
 }
+	
+	for (int i = 0; i < escuelas.length && carretel.getLargo()>0 ; i++) {
+		largoACoser=escuelas[i].sacarDigitoUltimoRetazo()+escuelas[i].getUltimoRetazo();
+		if(carretel.cortarRetazo(largoACoser)) {
+				escuelas[i].alargarBandera(largoACoser,carretel);
+				matRetazos[i][j]=(int)largoACoser;
+				}
+		
+	}
+		
 	sc.close();	
 
 	for (int i=0;i<escuelas.length;i++){
