@@ -13,10 +13,7 @@ public class Bandera {
 	}
 	
 	public Bandera () {
-		this.primerRetazo=0;
-		this.ultimoRetazo=0;
-		this.costuras=0;
-		this.largo=0;
+		this(0);
 	}
 	
 	public double getLargo() {
@@ -36,13 +33,10 @@ public class Bandera {
 	}
 
 	public void alargarBandera(double aumento, Carretel carretel) {
-		if(carretel.puedeCortarDelCarretel(aumento)) {
 			largo += aumento;
 			ultimoRetazo = aumento;
-			costuras++;
-		}
-
-	}
+			costuras++;	
+	} //O(1)
 	
 	public double getUltimoRetazo() {
 		return ultimoRetazo;
@@ -59,12 +53,12 @@ public class Bandera {
 	public int sacarDigitoUltimoRetazo (){
 		int numero=0;
 		double numParcial=this.getUltimoRetazo();
-		double digito=this.getUltimoRetazo()%10;
-		while(numParcial>=1) {
-			digito=numParcial%10;
-			numero=numero+(int)digito;
-			numParcial=numParcial/10;
-		}
+		double digito;
+		while(numParcial > 0) {
+			digito = numParcial %10;
+			numero += (int)digito;
+			numParcial /= 10;
+		} //Si no me equivoco es O(n)
 		return numero;
 		}
 

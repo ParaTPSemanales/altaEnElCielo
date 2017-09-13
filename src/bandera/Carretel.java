@@ -21,18 +21,19 @@ public class Carretel {
 	}
 	
 	public boolean cortarRetazo (double largo) {
-		if(puedeCortarDelCarretel(largo)) {
-			this.setLargo(this.getLargo()-largo);
-			return true;
-		}
-	return false;		
-	}
+	
+		if(!puedeCortarDelCarretel(largo)) 
+				return false;	
+		
+		this.setLargo(this.getLargo()-largo);
+		return true;
+	} // O(1)
 	
 	public boolean puedeCortarDelCarretel(double largo) {
 		if(largo<=this.getLargo())
 			return true;
 		return false;
-	}
+	}//O(1)
 	
 	
 }
