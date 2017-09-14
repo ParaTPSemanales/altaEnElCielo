@@ -43,79 +43,17 @@ public class Ejercicio {
 		
 	sc.close();	
 
-	mostrarMatriz(matRetazos);
+	Bandera.mostrarRetazos(matRetazos);
 
 	sobrante=carretel.getLargo();
 	cantMaxDeCosturas= Bandera.buscarCosturasMaximas (escuelas);
 	System.out.println("Sobrante del carretel:"+sobrante);
 	System.out.println("Cantidad de costuras Maximas:"+cantMaxDeCosturas);
 	int maximo[] = new int [3];
-	maximo = subsecuencia(matRetazos);
+	maximo = Bandera.subsecuencia(matRetazos);
 	System.out.println(maximo[0] + " " + maximo [1] + " " + maximo[2]);
 }
 	
-public static int[] subsecuencia(int[][] matEscuelas){
-	int[] maximo = new int[3];
-	int valor;
-	int [][] matAuxiliar = new int[matEscuelas.length + 1][matEscuelas[0].length + 1];
-	
-	
-	for (int i = 0; i < matEscuelas.length -1; i++) {
-		for (int j = i + 1; j < matEscuelas.length; j++) {
-			valor = secuenciaMaxima(matEscuelas[i],matEscuelas[j], matAuxiliar);
-			if(maximo[0] < valor ){
-				maximo[0] = valor;
-				maximo[1] = i +1;
-				maximo[2] = j +1;
-			}
-				
-		}
-	}
-	 
- 
-	
-	 return maximo;
-}
 
-public static int secuenciaMaxima(int[] vec1, int[] vec2, int[][] mat){
-	int i , j = 1;
-	iniMat(mat);
-
-	for ( i = 1; i <= vec2.length; i++) {
-		for ( j = 1; j <= vec1.length; j++) {
-			
-			
-			if(vec2[i-1] ==vec1[j-1])
-				mat[i][j]= mat[i-1][j-1]+1;
-			else
-				if(mat[i-1][j] >= mat[i][j-1])
-					mat[i][j]= mat[i-1][j];
-				else 
-					mat[i][j]= mat[i][j-1];
-		}
-	}
-	
-	return  mat[i-1][j-1];
-}
-
-public static void iniMat(int[][] mat){
-	
-	for (int i = 0; i < mat.length; i++) {
-		for (int j = 0; j < mat[0].length; j++) {
-			mat[i][j] = 0;
-		}
-	}
-}
-
-public static void mostrarMatriz(int[][] mat){
-	
-	for (int i=0;i<mat.length;i++){
-		for (int a=0;a<mat[0].length;a++) {
-				System.out.print(mat[i][a]+"\t");
-		}
-	System.out.println(" ");
-} //O(N2) PARA RECORRER
-	
-}
 
 }
